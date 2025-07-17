@@ -11,4 +11,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: neverendingqs/gh-action-tag-on-npm-version@v1.0.1
+      - name: Get version from package.json
+        id: get_version
+        run: echo "VERSION=v$(jq -r .version package.json)" >> $GITHUB_ENV
+      - name: Create tag
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git tag ${{ env.VERSION }}
+          git push origin ${{ env.VERSION }}
