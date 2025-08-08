@@ -25,6 +25,7 @@
   },
   "private": true,
   "dependencies": {
+    "@uirouter/core": "^6.1.1",
     "@vue/shared": "^3.0.7"
   },
   "devDependencies": {
